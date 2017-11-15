@@ -2,11 +2,12 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-15 19:02:52
+ * @Last Modified time: 2017-11-15 19:43:43
  */
 const path = require('path');
 // const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -43,6 +44,18 @@ module.exports = {
         new UglifyJsPlugin(
             
         ),
+        new HtmlWebpackPlugin({
+            // 当定义模版时，该配置不生效
+            title: 'webpack Demo',
+            // 传递 html-minifier 选项给 minify 输出
+            minify:{
+                // 去除 html 中的双引号
+                // removeAttributeQuotes: true
+            },
+            // 添加一个唯一的 hash 在 js 文件和 CSS 文件名
+            hash: true,
+            template: './src/index.html'
+        }),
     ],
     devServer: {
         // 绝对路径可以保证各个系统一致
