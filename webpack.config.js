@@ -2,9 +2,12 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-14 22:55:11
+ * @Last Modified time: 2017-11-15 19:02:52
  */
 const path = require('path');
+// const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 module.exports = {
     entry: {
         one: './src/entry.js',
@@ -37,7 +40,9 @@ module.exports = {
         ]
     },
     plugins: [
-
+        new UglifyJsPlugin(
+            
+        ),
     ],
     devServer: {
         // 绝对路径可以保证各个系统一致
@@ -49,8 +54,16 @@ module.exports = {
         // 默认端口是 8080
         port: 8081,
         overlay: {
-            warnings: true,
+            warnings: false,
             errors: true
         }
+    },
+    performance: {
+        // 打开错误警告
+        hints: 'warning',
+        // 入口资源大小，默认 250 000 bytes
+        maxEntrypointSize: 400000,
+        // 生成资源大小，默认同上
+        maxAssetSize: 200000,
     }
 };

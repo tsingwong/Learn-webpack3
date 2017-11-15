@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "live-server ./ port=9999",
-    "server_new": "webpack-dev-server"
+    "start": "live-server ./ port=9999",
+    "server_new": "webpack-dev-server",
+    "webpack": "webpack"
   },
   "author": "tsingwong",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "eslint": "^4.11.0",
     "live-server": "^1.2.0",
     "style-loader": "^0.19.0",
+    "uglifyjs-webpack-plugin": "^1.0.1",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
   }
