@@ -2,7 +2,7 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-15 19:43:43
+ * @Last Modified time: 2017-11-15 23:00:48
  */
 const path = require('path');
 // const webpack = require('webpack');
@@ -27,7 +27,8 @@ module.exports = {
                     {
                         loader: 'css-loader',
                         options: {
-                            modules: true
+                            // 
+                            // modules: true
                         }
                     }
                 ],
@@ -37,13 +38,25 @@ module.exports = {
                 exclude: /node_modules/,
                 // query 额外配置
                 // query:
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 50000
+                        }
+                    }
+                ]
             }
         ]
     },
     plugins: [
-        new UglifyJsPlugin(
+        // 压缩 js
+        // new UglifyJsPlugin(
             
-        ),
+        // ),
         new HtmlWebpackPlugin({
             // 当定义模版时，该配置不生效
             title: 'webpack Demo',
@@ -77,6 +90,6 @@ module.exports = {
         // 入口资源大小，默认 250 000 bytes
         maxEntrypointSize: 400000,
         // 生成资源大小，默认同上
-        maxAssetSize: 200000,
+        maxAssetSize: 400000,
     }
 };
