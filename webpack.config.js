@@ -2,12 +2,13 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-15 23:00:48
+ * @Last Modified time: 2017-11-16 22:56:13
  */
 const path = require('path');
 // const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -15,23 +16,26 @@ module.exports = {
         two: './src/entry2.js',
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, './dist'),
         filename: '[name].js',
+        // publicPath: 'http://127.0.0.1:8081/',
+        // 相对路径
+        publicPath: '/dist/',
     },
     module: {
         rules: [
             {
                 test: /\.css$/,
-                use: [
-                    'style-loader',
-                    {
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: {
                         loader: 'css-loader',
                         options: {
                             // 
                             // modules: true
                         }
                     }
-                ],
+                }),
                 // 必处理文件
                 include: /src/,
                 // 必不处理文件
@@ -69,6 +73,7 @@ module.exports = {
             hash: true,
             template: './src/index.html'
         }),
+        new ExtractTextPlugin('css/index.css'),
     ],
     devServer: {
         // 绝对路径可以保证各个系统一致
