@@ -2,7 +2,7 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-16 22:56:13
+ * @Last Modified time: 2017-11-16 23:33:49
  */
 const path = require('path');
 // const webpack = require('webpack');
@@ -49,10 +49,17 @@ module.exports = {
                     {
                         loader: 'url-loader',
                         options: {
-                            limit: 50000
+                            // byte
+                            limit: 500,
+                            // 输出到 img 文件夹下
+                            outputPath: 'img/'
                         }
                     }
                 ]
+            },
+            {
+                test: /\.(html|htm)$/i,
+                use: ['html-withimg-loader']
             }
         ]
     },
