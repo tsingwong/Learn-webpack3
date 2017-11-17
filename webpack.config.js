@@ -2,7 +2,7 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-16 23:33:49
+ * @Last Modified time: 2017-11-17 09:57:43
  */
 const path = require('path');
 // const webpack = require('webpack');
@@ -60,6 +60,16 @@ module.exports = {
             {
                 test: /\.(html|htm)$/i,
                 use: ['html-withimg-loader']
+            },
+            {
+                test: /\.less$/,
+                use: [{
+                    loader: 'style-loader'
+                }, {
+                    loader: 'css-loader'
+                }, {
+                    loader: 'less-loader'
+                }]
             }
         ]
     },
