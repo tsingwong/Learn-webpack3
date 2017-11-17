@@ -2,7 +2,7 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-17 09:57:43
+ * @Last Modified time: 2017-11-17 10:07:24
  */
 const path = require('path');
 // const webpack = require('webpack');
@@ -63,13 +63,14 @@ module.exports = {
             },
             {
                 test: /\.less$/,
-                use: [{
-                    loader: 'style-loader'
-                }, {
-                    loader: 'css-loader'
-                }, {
-                    loader: 'less-loader'
-                }]
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [ {
+                        loader: 'css-loader'
+                    }, {
+                        loader: 'less-loader'
+                    }]
+                })
             }
         ]
     },
