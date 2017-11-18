@@ -2,7 +2,7 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-18 20:53:03
+ * @Last Modified time: 2017-11-18 21:10:32
  */
 const path = require('path');
 const glob = require('glob');
@@ -13,6 +13,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PurifyCssPlugin = require('purifycss-webpack');
 
 module.exports = {
+    devtool: 'source-map',
     entry: {
         one: './src/entry.js',
         two: './src/entry2.js',
