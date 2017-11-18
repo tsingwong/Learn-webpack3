@@ -2,7 +2,7 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 22:40:17 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-18 20:26:57
+ * @Last Modified time: 2017-11-18 20:56:39
  */
 body {
     background-color: red;
@@ -10,6 +10,8 @@ body {
 
 #title {
     color: chartreuse;
+    transform: translateX(200px);
+    flex:1;
 }
 
 .img {

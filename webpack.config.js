@@ -2,7 +2,7 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-18 20:27:45
+ * @Last Modified time: 2017-11-18 20:53:03
  */
 const path = require('path');
 const glob = require('glob');
@@ -30,13 +30,17 @@ module.exports = {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: {
+                    use: [{
                         loader: 'css-loader',
                         options: {
                             // 
                             // modules: true
+                            // 用于配置「css-loader 作用于 @import 的资源之前」有多少个 loader
+                            importLoaders: 1
                         }
-                    }
+                    },{
+                        loader: 'postcss-loader'
+                    }]
                 }),
                 // 必处理文件
                 include: /src/,
