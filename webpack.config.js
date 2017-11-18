@@ -2,13 +2,15 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-18 20:06:51
+ * @Last Modified time: 2017-11-18 20:27:45
  */
 const path = require('path');
+const glob = require('glob');
 // const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const PurifyCssPlugin = require('purifycss-webpack');
 
 module.exports = {
     entry: {
@@ -107,6 +109,9 @@ module.exports = {
             template: './src/index.html'
         }),
         new ExtractTextPlugin('css/index.css'),
+        new PurifyCssPlugin({
+            paths: glob.sync(path.join(__dirname, 'src/*.html'))
+        })
     ],
     devServer: {
         // 绝对路径可以保证各个系统一致
