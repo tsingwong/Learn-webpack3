@@ -2,7 +2,7 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-17 10:07:24
+ * @Last Modified time: 2017-11-18 20:06:51
  */
 const path = require('path');
 // const webpack = require('webpack');
@@ -63,12 +63,27 @@ module.exports = {
             },
             {
                 test: /\.less$/,
+                // less 打包到 js 中
+                // use: ['style-loader', 'css-loader', 'less-loader'] 
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [ {
                         loader: 'css-loader'
                     }, {
                         loader: 'less-loader'
+                    }]
+                })
+            },
+            {
+                test: /\.scss$/,
+                // sass 打包到 js 中
+                // use: ['style-loader', 'css-loader', 'sass-loader']
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [ {
+                        loader: 'css-loader'
+                    }, {
+                        loader: 'sass-loader'
                     }]
                 })
             }
