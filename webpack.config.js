@@ -2,7 +2,7 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-19 13:22:00
+ * @Last Modified time: 2017-11-19 13:49:16
  */
 const path = require('path');
 const glob = require('glob');
@@ -12,12 +12,15 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PurifyCssPlugin = require('purifycss-webpack');
 
+const entry = require('./build/entry.webpack.js');
+
 module.exports = {
     devtool: 'source-map',
-    entry: {
-        one: './src/entry.js',
-        two: './src/entry2.js',
-    },
+    // entry: {
+    //     one: './src/entry.js',
+    //     two: './src/entry2.js',
+    // },
+    entry: entry.path,
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].js',
