@@ -2,7 +2,7 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-18 21:10:32
+ * @Last Modified time: 2017-11-19 13:22:00
  */
 const path = require('path');
 const glob = require('glob');
@@ -93,6 +93,15 @@ module.exports = {
                         loader: 'sass-loader'
                     }]
                 })
+            }, {
+                test: /\.(jsx|js)$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        // presets: ['env']
+                    }
+                }
             }
         ]
     },
