@@ -2,7 +2,7 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-19 21:08:23
+ * @Last Modified time: 2017-11-19 21:18:02
  */
 const path = require('path');
 const glob = require('glob');
@@ -134,6 +134,9 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery'
         }),
+        new webpack.BannerPlugin({
+            banner: '@Author: TsingWong'
+        })
     ],
     devServer: {
         // 绝对路径可以保证各个系统一致
