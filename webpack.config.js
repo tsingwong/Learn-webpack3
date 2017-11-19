@@ -2,7 +2,7 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-19 21:18:02
+ * @Last Modified time: 2017-11-19 22:01:49
  */
 const path = require('path');
 const glob = require('glob');
@@ -69,7 +69,8 @@ module.exports = {
             },
             {
                 test: /\.(html|htm)$/i,
-                use: ['html-withimg-loader']
+                // 默认会去除换行符，min=false 为不去除换行符
+                use: ['html-withimg-loader?min=false']
             },
             {
                 test: /\.less$/,
@@ -136,6 +137,15 @@ module.exports = {
         }),
         new webpack.BannerPlugin({
             banner: '@Author: TsingWong'
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            // 同上面的入口名
+            name: ['jquery', 'vue'],
+            // 抽离路径
+            filename: 'assets/commonJs/[name].js',
+            // // 数量必须大于等于2，或者少于等于 chunks的数量
+            minChunks: 2,
+
         })
     ],
     devServer: {
