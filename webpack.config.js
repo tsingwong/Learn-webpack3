@@ -2,11 +2,11 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-19 13:49:16
+ * @Last Modified time: 2017-11-19 20:28:20
  */
 const path = require('path');
 const glob = require('glob');
-// const webpack = require('webpack');
+const webpack = require('webpack');
 // const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -128,7 +128,12 @@ module.exports = {
         new ExtractTextPlugin('css/index.css'),
         new PurifyCssPlugin({
             paths: glob.sync(path.join(__dirname, 'src/*.html'))
-        })
+        }),
+        // 自动加载模块，而不必到处 import 或 require 
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
+        }),
     ],
     devServer: {
         // 绝对路径可以保证各个系统一致
