@@ -2,7 +2,7 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-19 20:28:20
+ * @Last Modified time: 2017-11-19 21:08:23
  */
 const path = require('path');
 const glob = require('glob');
@@ -156,5 +156,14 @@ module.exports = {
         maxEntrypointSize: 400000,
         // 生成资源大小，默认同上
         maxAssetSize: 400000,
+    },
+    watchOptions: {
+        // 指定毫秒为单位进行轮询
+        poll: 1000,
+        // 当第一个文件更改，会在重新构建前增加延迟。
+        // 这个选项允许 webpack 将这段时间内进行的任何其他更改都聚合到一次重新构建里
+        // 默认 300
+        aggregateTimeout: 500,
+        ignored: /node_modules/
     }
 };
