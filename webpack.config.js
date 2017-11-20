@@ -2,7 +2,7 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-19 22:07:31
+ * @Last Modified time: 2017-11-20 13:25:24
  */
 const path = require('path');
 const glob = require('glob');
@@ -11,6 +11,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PurifyCssPlugin = require('purifycss-webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const entry = require('./build/entry.webpack.js');
 
@@ -146,7 +147,12 @@ module.exports = {
             // // 数量必须大于等于2，或者少于等于 chunks的数量
             minChunks: 2,
 
-        })
+        }),
+        new CopyWebpackPlugin([{
+            from: __dirname + '/src/public',
+            // 相对于上面的出口
+            to: './public',
+        }])
     ],
     devServer: {
         // 绝对路径可以保证各个系统一致
