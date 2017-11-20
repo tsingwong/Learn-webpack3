@@ -2,7 +2,7 @@
  * @Author: tsingwong 
  * @Date: 2017-11-14 18:30:58 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-20 13:25:24
+ * @Last Modified time: 2017-11-20 16:25:48
  */
 const path = require('path');
 const glob = require('glob');
@@ -15,6 +15,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const entry = require('./build/entry.webpack.js');
 
+
+
 module.exports = {
     devtool: 'source-map',
     // entry: {
@@ -25,9 +27,9 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].js',
-        // publicPath: 'http://127.0.0.1:8081/',
+        publicPath: 'http://localhost:8082/',
         // 相对路径
-        publicPath: '/dist/',
+        // publicPath: '/dist/',
     },
     module: {
         rules: [
@@ -152,7 +154,9 @@ module.exports = {
             from: __dirname + '/src/public',
             // 相对于上面的出口
             to: './public',
-        }])
+        }]),
+        // 对应命令为 webpack-dev-server --hot
+        new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
         // 绝对路径可以保证各个系统一致
@@ -166,15 +170,20 @@ module.exports = {
         overlay: {
             warnings: false,
             errors: true
-        }
+        },
+        open: true,
+        hot: true,
+        hotOnly: true,
+        // HMR
+        // hotOnly: true,
     },
     performance: {
         // 打开错误警告
         hints: 'warning',
         // 入口资源大小，默认 250 000 bytes
-        maxEntrypointSize: 400000,
+        maxEntrypointSize: 1000000,
         // 生成资源大小，默认同上
-        maxAssetSize: 400000,
+        maxAssetSize: 1000000,
     },
     watchOptions: {
         // 指定毫秒为单位进行轮询

@@ -2,12 +2,14 @@
  * @Author: tsingwong 
  * @Date: 2017-11-13 22:18:39 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-20 14:27:59
+ * @Last Modified time: 2017-11-20 16:20:37
  */
 import './css/index.css';
 import './css/black.less';
 import './css/nav.scss';
 import tsingwong from './tsingwong.js';
+
+import hmr from './hmr';
 
 import $ from 'jquery';
 
@@ -26,3 +28,10 @@ import $ from 'jquery';
 import json from '../config.json';
 
 $('.json').text(json.name);
+
+if (module.hot) {
+    module.hot.accept('./hmr', () => {
+        console.log('hmr js update');
+        hmr.log();
+    });
+}
