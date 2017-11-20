@@ -2,7 +2,7 @@
  * @Author: tsingwong 
  * @Date: 2017-11-13 22:18:39 
  * @Last Modified by: tsingwong
- * @Last Modified time: 2017-11-19 20:22:53
+ * @Last Modified time: 2017-11-20 14:27:59
  */
 import './css/index.css';
 import './css/black.less';
@@ -22,3 +22,7 @@ import $ from 'jquery';
         /* eslint-enable */
     });
 }
+
+import json from '../config.json';
+
+$('.json').text(json.name);
